@@ -32,6 +32,21 @@ class WelcomeScreen:
                     elif event.key == K_w:
                         oss.quit()
                         self.exit()
+class BOMB:                        
+    def __init__(self, parent_screen):
+        self.parent_screen = parent_screen
+        self.image = oss.image.load("resources/vecteezy_close-up-photo-of-hand-grenade_13961658_413.jpg").convert()
+        self.x = 320
+        self.y = 320
+
+    def draw(self):
+        self.parent_screen.blit(self.image, (self.x, self.y))
+        oss.display.flip()
+
+    def move(self):
+        self.x = random.randint(1,16)*SIZE
+        self.y = random.randint(1,13)*SIZE
+
 class Apple:
     def __init__(self, parent_screen):
         self.parent_screen = parent_screen
@@ -109,6 +124,8 @@ class PLAY:
         self.snake.draw()
         self.apple = Apple(self.surface)
         self.apple.draw()
+        self.BOMB = BOMB(self.surface)
+        self.BOMB.draw()
         self.speed=0.25
 
     def play_background_music(self):
@@ -126,6 +143,7 @@ class PLAY:
     def reset(self):
         self.snake = Snake(self.surface)
         self.apple = Apple(self.surface)
+        self.BOMB = BOMB(self.surface)
 
     def is_collision(self, x1, y1, x2, y2):
         if x1 >= x2 and x1 < x2 + SIZE:
@@ -150,6 +168,7 @@ class PLAY:
         self.render_background()
         self.snake.walk()
         self.apple.draw()
+        self.BOMB.draw()
         self.display_score()
         oss.display.flip()
 

@@ -112,7 +112,7 @@ class PLAY:
         self.speed=0.25
 
     def play_background_music(self):
-        oss.mixer.music.load('resources/battle-of-the-dragons-8037.mp3')
+        oss.mixer.music.load("resources/enigma-dream-170618.mp3")
         oss.mixer.music.play(-1, 0)
 
     def play_sound(self, sound_name):
